@@ -24,7 +24,22 @@ compileJava {
     ])
 }
 
-archivesBaseName = "pravega-connectors-spark"
+// def getSparkMajorMinorVersion() {
+//     String ver = sparkVersion
+//     return ver.substring(0, ver.lastIndexOf('.'))
+// }
+
+// def getScalaMajorMinorVersion() {
+//     String ver = scalaVersion
+//     return ver.substring(0, ver.lastIndexOf('.'))
+// }
+
+def getMajorMinorVersion(inputVersion) {
+    String ver = inputVersion
+    return ver.substring(0, ver.lastIndexOf('.'))
+}
+
+archivesBaseName = "pravega-connectors-spark-" + getMajorMinorVersion(sparkVersion) + '_' + getMajorMinorVersion(scalaVersion)
 
 assemble.dependsOn(shadowJar)
 
